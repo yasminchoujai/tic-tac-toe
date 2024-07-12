@@ -68,10 +68,10 @@ function checkResult() {
     }
 
     // If it's a draw (no empty cells left), display a draw message
-    let roundDraw = !board.includes("");
+    let roundDraw = board.every(cell => cell !== "");
     if (roundDraw) {
         message.innerText = "It's a draw!";
-        gameActive = false;
+        gameActive = true;
         return;
     }
 
@@ -86,4 +86,13 @@ function handleResetGame() {
     currentPlayer = "X"; // Reset the current player
     message.innerText = ""; // Clear the message
     cells.forEach(cell => cell.innerText = ""); // Clear all cell texts
+}
+
+// Display initial empty board
+renderBoard();
+
+function renderBoard() {
+    for (let i = 0; i < board.length; i++) {
+        cells[i].innerText = board[i];
+    }
 }
